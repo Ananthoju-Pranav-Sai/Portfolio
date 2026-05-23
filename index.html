@@ -3,41 +3,355 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name | Portfolio</title>
+    <title>Pranav Sai Ananthoju</title>
     <style>
-        body { font-family: system-ui, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 2rem; background: #f9f9f9; color: #333; }
-        header { text-align: center; margin-bottom: 3rem; }
-        .project-card { background: white; padding: 1.5rem; margin-bottom: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .tags { color: #666; font-size: 0.9rem; font-style: italic; }
-        a { color: #0066cc; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        /* Modern Reset & Base Styles */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            line-height: 1.7; 
+            background-color: #121214; 
+            color: #e1e1e6; 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 0 1.5rem;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            border-bottom: 1px solid #29292e;
+            position: sticky;
+            top: 0;
+            background-color: rgba(18, 18, 20, 0.95);
+            z-index: 100;
+        }
+        nav .logo { font-weight: 700; font-size: 1.2rem; }
+        nav ul { display: flex; list-style: none; gap: 1.5rem; }
+        nav a { color: #a8a8b3; text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        nav a:hover { color: #04d361; }
+
+        /* Sections General */
+        section { padding: 6rem 0; border-bottom: 1px solid #29292e; }
+        h2 { font-size: 2rem; margin-bottom: 2rem; color: #ffffff; }
+
+        /* Intro Section */
+        #intro { padding-top: 8rem; }
+        #intro h1 { font-size: 3rem; color: #ffffff; line-height: 1.2; margin-bottom: 1rem; }
+        #intro h1 span { color: #04d361; }
+        #intro p { font-size: 1.2rem; color: #a8a8b3; max-width: 600px; }
+        
+        /* Publications Section Styling */
+        .publications-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .pub-row {
+            background: #202024;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid #29292e;
+        }
+        .pub-content h3 { 
+            color: #ffffff; 
+            font-size: 1.25rem; 
+            margin-bottom: 0.5rem; 
+        }
+        .pub-authors { 
+            font-size: 0.95rem; 
+            color: #e1e1e6; 
+            margin-bottom: 0.25rem; 
+        }
+        .pub-venue { 
+            font-size: 0.9rem; 
+            color: #04d361; 
+            margin-bottom: 1rem; 
+        }
+        .pub-status {
+            color: #a8a8b3;
+            font-size: 0.85rem;
+            margin-left: 0.5rem;
+        }
+        .pub-abstract { 
+            font-size: 0.9rem; 
+            color: #a8a8b3; 
+            margin-bottom: 1.5rem; 
+            line-height: 1.6;
+        }
+        .pub-links a { 
+            color: #ffffff; 
+            text-decoration: none; 
+            font-size: 0.85rem; 
+            font-weight: 600;
+            margin-right: 1.5rem;
+            border-bottom: 1px dashed #7c7c8a;
+        }
+        .pub-links a:hover { 
+            color: #04d361; 
+            border-bottom-color: #04d361; 
+        }
+        
+        /* New Projects List Layout */
+        .projects-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem; 
+        }
+        .project-row.text-only {
+            background: #202024;
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 1px solid #29292e;
+        }
+        .project-content {
+            width: 100%;
+        }
+        .project-content h3 { color: #ffffff; margin-bottom: 0.75rem; font-size: 1.4rem; }
+        .project-content p { color: #a8a8b3; font-size: 0.95rem; margin-bottom: 1.5rem; }
+        
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+        .tech-tags span { 
+            background: #29292e; 
+            color: #04d361; 
+            font-size: 0.75rem; 
+            padding: 0.25rem 0.75rem; 
+            border-radius: 20px; 
+            font-weight: 600;
+        }
+        .project-links a { 
+            color: #ffffff; 
+            text-decoration: none; 
+            font-size: 0.9rem; 
+            font-weight: 600;
+            margin-right: 1rem;
+        }
+        .project-links a:hover { text-decoration: underline; }
+
+        /* Mobile Responsive rule update */
+        @media (max-width: 768px) {
+            .project-row, .project-row:nth-child(even) {
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 1.5rem;
+            }
+            .project-image {
+                min-width: 100%;
+            }
+        }
+
+        /* Contact Section */
+        #contact p { font-size: 1.1rem; color: #a8a8b3; margin-bottom: 2rem; max-width: 500px; }
+        .social-links { display: flex; gap: 1.5rem; }
+        .social-links a { 
+            color: #ffffff; 
+            text-decoration: none; 
+            font-weight: 600; 
+            background: #202024; 
+            padding: 0.75rem 1.5rem; 
+            border-radius: 6px; 
+            border: 1px solid #29292e;
+            transition: background 0.2s, color 0.2s;
+        }
+        .social-links a:hover { background: #29292e; color: #04d361; }
+
+        /* Footer */
+        footer { text-align: center; padding: 2rem 0; color: #7c7c8a; font-size: 0.85rem; }
+
+        @media (max-width: 600px) {
+            #intro h1 { font-size: 2.2rem; }
+            nav { flex-direction: column; gap: 1rem; text-align: center; }
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Hi, I'm [Your Name]</h1>
-        <p>A passionate developer building cool things with code.</p>
-        <p><a href="https://linkedin.com/in/yourprofile">LinkedIn</a> | <a href="https://github.com/yourusername">GitHub</a></p>
-    </header>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">Pranav Sai Ananthoju</div>
+        <ul>
+            <li><a href="#intro">Home</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-    <main>
+    <!-- Intro Section -->
+    <section id="intro">
+        <h1>Hi, I'm <span>Pranav Sai Ananthoju</span></h1>
+        <p>A software developer focused on building clean, functional applications. Welcome to my personal space on the web.</p>
+    </section>
+
+    <!-- Publications-->
+    <section id="publications">
+        <h2>Publications</h2>
+        <div class="publications-list">
+            
+            <div class="pub-row">
+                <div class="pub-content">
+                    <h3>Automated Microstress Assessment During Pregnancy Using ECG Sensing and Optimized Deep Networks</h3>
+                    <p class="pub-authors">
+                        Chirag Mehta, <strong>Pranav Sai Ananthoju</strong>, Swarubini P J, and Nagarajan Ganapathy.
+                    </p>
+                    <p class="pub-venue">
+                        <em>IEEE Sensors Letters</em>, Vol. 8, No. 9, 2024
+                    </p>
+                    <p class="pub-abstract">
+                        Proposed an end-to-end framework for detecting microecological momentary assessment (micro-EMA) based stress in pregnant mothers using preprocessed ECG signals. Extracted key physiological features and compared multiple classification pipelines, demonstrating that a 1D Convolutional Neural Network with fine-tuning (DLFT) achieves an optimal 76.50% F1-score via leave-one-subject-out cross-validation.
+                    </p>
+                    <div class="pub-links">
+                        <a href="https://ieeexplore.ieee.org/document/10639474/" target="_blank">IEEE Xplore &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
         <h2>Featured Projects</h2>
-        
-        <div class="project-card">
-            <h3>Project Title One</h3>
-            <p>A brief description of what this project does, the problem it solves, and why you built it.</p>
-            <p class="tags">Built with: HTML, CSS, JavaScript</p>
-            <a href="#">View Live Demo</a> | <a href="#">GitHub Repo</a>
-        </div>
+        <div class="projects-list">
+            
+            <!-- Project 1 -->
+            <div class="project-row text-only">
+                <div class="project-content">
+                    <h3>RL4ReAl: Reinforcement Learning for Register Allocation</h3>
+                    <p>
+                       Worked on reinforcement learning implementation for an ongoing compiler optimization research project. I was responsible for developing and testing the <strong>hierarchical multi-agent framework</strong> used to navigate the register allocation decision space. 
+                    </p>
+                    <p style="font-size: 0.9rem; color: #a8a8b3; margin-bottom: 1.5rem;">
+                        Revamped a scratch-built <strong>Gated Graph Neural Network (GGNN)</strong> into a modular PyTorch implementation to handle dynamic graph observations and executed the end-to-end experimental pipeline—running long training cycles to evaluate <strong>PPO, APPO, and A2C</strong> algorithms against industry benchmarks and conducting ablation studies on agent complexity.
+                    </p>
 
-        <div class="project-card">
-            <h3>Project Title Two</h3>
-            <p>Another awesome project description goes right here.</p>
-            <p class="tags">Built with: Python, Flask</p>
-            <a href="#">GitHub Repo</a>
+                    <div class="tech-tags">
+                        <span>Reinforcement Learning</span>
+                        <span>PyTorch</span>
+                        <span>rllib</span>
+                        <span>GGNN</span>
+                        <span>Experimental Research</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-row text-only">
+                <div class="project-content">
+                    <h3>Agentic NPC Dialogue System</h3>
+                    <p>
+                        Implemented a centralized LLM service featuring agent-specific memory architectures that decouple an NPC's static identity from their dynamic, ongoing experiences. The framework utilizes vector-based retrieval mechanisms to enable highly context-aware and stateful character responses.
+                    </p>
+
+                    <p style="font-size: 0.9rem; color: #a8a8b3; margin-bottom: 1.5rem;">
+                        Validated the robustness and consistency of the dialogue service by deploying it within a text-based social deception game, requiring complex cross-agent reasoning and strict behavioral memory alignment.
+                    </p>
+
+                    <div class="tech-tags">
+                        <span>Generative Agents</span>
+                        <span>LLM Orchestration</span>
+                        <span>Vector Databases</span>
+                        <span>Context Retrieval</span>
+                        <span>Game AI</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Ananthoju-Pranav-Sai/CoGE" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-row text-only">
+                <div class="project-content">
+                    <h3>Multi-Step Reasoning using Truthfulness and Faithfulness</h3>
+                    <p>
+                        Enhanced the <em>Entailer</em> architecture from open-source NLP research to generate more faithful and truthful explanations for multi-step Question Answering (QA) tasks. By systematically mitigating reasoning errors, the optimized pipeline yielded a <strong>5–8% accuracy improvement</strong> on the OpenBookQA (OBQA) and QUARTZ datasets.
+                    </p>
+
+                    <p style="font-size: 0.9rem; color: #a8a8b3; margin-bottom: 1.5rem;">
+                        Focused on reducing belief errors within the model's generated premises. Integrated LLaMA-7B as the core engine and executed a targeted fine-tuning pipeline using the ARC and WorldTree datasets, successfully refining the model's logical deduction paths and consistency.
+                    </p>
+
+                    <div class="tech-tags">
+                        <span>Natural Language Processing (NLP)</span>
+                        <span>LLaMA</span>
+                        <span>Fine-Tuning</span>
+                        <span>Multi-Step Reasoning</span>
+                        <span>Model Alignment</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://arxiv.org/abs/2210.12217" target="_blank">Base Paper</a>
+                        <a href="https://github.com/cmaspi/Multistep-reasoning" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-row text-only">
+                <div class="project-content">
+                    <h3>Algorithmic Recourse under Incomplete Causal Graphs</h3>
+                    <p>
+                        Tackled algorithmic recourse under incomplete causal graphs by developing a practical, data-driven method for cost-efficient, actionable interventions using only observed data to improve machine learning explainability.
+                    </p>
+
+                    <p style="font-size: 0.9rem; color: #a8a8b3; margin-bottom: 1.5rem;">
+                        Evaluated the approach on a semi-synthetic 7-variable Structural Causal Model (SCM) inspired by the UCI German Credit dataset, demonstrating its effectiveness under scenarios with partial causal knowledge.
+                    </p>
+
+                    <div class="tech-tags">
+                        <span>Explainable AI (XAI)</span>
+                        <span>Causal Inference</span>
+                        <span>Structural Causal Models (SCM)</span>
+                        <span>Algorithmic Recourse</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/cmaspi/Recourse-using-Incomplete-Causal-Graph" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-row text-only">
+                <div class="project-content">
+                    <h3>3D Object Reconstruction from Single-View Images</h3>
+                    <p>
+                        Implemented an encoder-decoder neural network model designed to generate accurate 3D point clouds of an object using only a single viewpoint as input.
+                    </p>
+
+                    <p style="font-size: 0.9rem; color: #a8a8b3; margin-bottom: 1.5rem;">
+                        Synthesized approximate depth maps from entirely novel viewpoints of the given image, subsequently fusing these multi-angle depth maps into a cohesive 3D point cloud structure.
+                    </p>
+
+                    <div class="tech-tags">
+                        <span>3D Computer Vision</span>
+                        <span>Deep Learning</span>
+                        <span>Encoder-Decoder</span>
+                        <span>Point Clouds</span>
+                        <span>Image Processing</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Ananthoju-Pranav-Sai/IVP_Project" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </main>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <p>I'm always open to discussing new projects, opportunities, or code collaborations. Drop me a line through any of the platforms below!</p>
+        <div class="social-links">
+            <a href="mailto:your.email@example.com">Email Me</a>
+            <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Pranav Sai Ananthoju</p>
+    </footer>
 
 </body>
 </html>
