@@ -45,6 +45,79 @@
         #intro h1 span { color: #04d361; }
         #intro p { font-size: 1.2rem; color: #a8a8b3; max-width: 600px; }
         
+        /* Experience Section Styling */
+        .experience-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+        .exp-item {
+            background: #202024;
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 1px solid #29292e;
+        }
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .exp-title-company h3 {
+            color: #ffffff;
+            font-size: 1.3rem;
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.3px;
+        }
+        .exp-title-company .company {
+            color: #04d361;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .exp-date {
+            color: #7c7c8a;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .exp-bullets {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .exp-bullets li {
+            color: #a8a8b3;
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 1.25rem;
+            line-height: 1.6;
+        }
+        /* Custom neon-green minimalist bullet point indicator */
+        .exp-bullets li::before {
+            content: "•";
+            color: #04d361;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .exp-bullets li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Mobile Responsiveness Rules */
+        @media (max-width: 600px) {
+            .exp-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+            }
+            .exp-item {
+                padding: 1.75rem;
+            }
+        }
+        
         /* Publications Section Styling */
         .publications-list {
             display: flex;
@@ -172,9 +245,10 @@
 
     <!-- Navigation Bar -->
     <nav>
-        <div class="logo">Pranav Sai Ananthoju</div>
+        <div class="logo">Portfolio.</div>
         <ul>
             <li><a href="#intro">Home</a></li>
+            <li><a href="#experience">Experience</a></li>
             <li><a href="#publications">Publications</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -184,7 +258,46 @@
     <!-- Intro Section -->
     <section id="intro">
         <h1>Hi, I'm <span>Pranav Sai Ananthoju</span></h1>
-        <p>A software developer focused on building clean, functional applications. Welcome to my personal space on the web.</p>
+        <p>I am a software engineer and researcher working at the intersection of high-performance systems and machine learning. Currently a Member of Technical Staff at Oracle Cloud Infrastructure (OCI) Networking, my expertise ranges from developing fault-isolated C++ dataplane services to engineering multi-agent reinforcement learning frameworks and fine-tuning large-scale generative models.</p>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="experience-list">
+            
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-title-company">
+                        <h3>Member of Technical Staff</h3>
+                        <span class="company">Oracle Cloud Infrastructure (OCI) Networking</span>
+                    </div>
+                    <span class="exp-date">Jul 2024 – Present</span>
+                </div>
+                <ul class="exp-bullets">
+                    <li>Designed and implemented high-availability services for a multi-process dataplane environment (Multi-CPP), including a unified flow-log ingestion system and a C++ shared-memory configuration agent to ensure traffic-specific fault isolation.</li>
+                    <li>Developed a high-performance packet tracing tool to accelerate root-cause analysis of dataplane packet drops, improving observability and reducing incident resolution time by 4x.</li>
+                    <li>Delivered configurable dataplane limits to eliminate rebuild-based limit changes, reducing node recovery time during incidents by ~5 minutes.</li>
+                    <li>Integrated IPsec protocol support into service capture filters, extending observability to encrypted workloads and assisting in the retention of a $200M ARR enterprise customer.</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-title-company">
+                        <h3>Machine Learning Intern</h3>
+                        <span class="company">Oracle Cloud Infrastructure (OCI) Generative AI</span>
+                    </div>
+                    <span class="exp-date">May 2023 – Jul 2023</span>
+                </div>
+                <ul class="exp-bullets">
+                    <li>Developed an intelligent Code Assistant supporting auto-completion, text-to-code, and code-to-text functionalities for the Oracle SuiteScript language.</li>
+                    <li>Fine-tuned a 16B parameter StarChat code-generation model using Low-Rank Adaptation (LoRA) and Parameter-Efficient Fine-Tuning (PEFT) on a resource-constrained multi-GPU infrastructure.</li>
+                    <li>Evaluated performance using self-developed k-pass benchmarks, achieving BLEU scores of 0.5 (zero-shot) and 0.7 (few-shot).</li>
+                </ul>
+            </div>
+
+        </div>
     </section>
 
     <!-- Publications-->
@@ -342,9 +455,9 @@
         <h2>Get In Touch</h2>
         <p>I'm always open to discussing new projects, opportunities, or code collaborations. Drop me a line through any of the platforms below!</p>
         <div class="social-links">
-            <a href="mailto:your.email@example.com">Email Me</a>
-            <a href="https://github.com/yourusername" target="_blank">GitHub</a>
-            <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+            <a href="mailto:ananthojupranavsai@gmail.com">Email Me</a>
+            <a href="https://github.com/Ananthoju-Pranav-Sai" target="_blank">GitHub</a>
+            <a href="www.linkedin.com/in/pranav-sai-ananthoju" target="_blank">LinkedIn</a>
         </div>
     </section>
 
